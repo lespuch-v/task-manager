@@ -1,27 +1,61 @@
-# TaskManager
+# Task Manager - Personal Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+Welcome to my Task Manager project! This project is designed to help users manage their tasks and stay organized. It is built with a modern tech stack, including Angular for the front-end, and Express, MongoDB, and Node.js for the back-end. Feel free to explore, use, or contribute to this project.
 
-## Development server
+## Table of Contents
+- Features
+- Installation
+- Running the Application
+- Contributing
+- License
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Features
+- User-friendly interface for easy task management
+- Create, edit, and delete tasks
+- Set priorities and due dates for tasks
+- Filter tasks by status, priority, or date
+- Responsive design for desktop and mobile devices
 
-## Code scaffolding
+### Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To get started, you'll need to have the following software installed on your computer:
 
-## Build
+- Node.js (>= 14.x)
+- NPM (>= 6.x)
+- MongoDB (>= 4.x)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Once these are installed, you can set up the project by following these steps:
+1. Clone the repository:
+`git clone https://github.com/lespuch-v/task-manager.git`
 
-## Running unit tests
+2. Change into the project directory:
+`cd task-manager`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Install the required dependencies:
+`npm install`
 
-## Running end-to-end tests
+4. Set up the environment variables by creating a .env file in the root directory of the project. Use the provided .env.example file as a reference.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+5. Start the MongoDB service:
+`sudo service mongod start`
 
-## Further help
+### Running the Application
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To run the application, follow these steps:
+1. Start the back-end server:
+`npm run start:server`
+
+2. In a separate terminal window, start the front-end development server:
+`npm start`
+
+3. Open your web browser and navigate to http://localhost:4200 to view the Task Manager application.
+
+### Contributing
+
+1. Fork the repository and create a new branch with a descriptive name.
+2. Make changes or add new features to the project.
+3. Commit your changes, push to your fork, and create a pull request.
+4. Please make sure to provide a clear and detailed description of the changes you've made.
+
+### License
+This project is licensed under the MIT License. See the LICENSE file for more information.
