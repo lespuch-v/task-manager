@@ -1,0 +1,109 @@
+<div class="text-center mb-4">
+  <h1>Task Manager</h1>
+  <h6>Score: {{ score }}</h6>
+</div>
+<div class="card">
+  <div class="card-body">
+    <form (submit)="addTask()">
+      <div class="input-group">
+        <input
+          [(ngModel)]="newTaskTitle"
+          type="text"
+          class="form-control my-3"
+          name="taskTitle"
+          placeholder="Add a new task"
+        />
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-primary my-3">Add</button>
+        </div>
+      </div>
+    </form>
+    <ul class="list-group">
+      <li *ngFor="let task of tasks" class="list-group-item">
+        <div class="custom-control custom-checkbox">
+          <!-- Add the confetti trigger to the main task checkbox -->
+          <label
+            *ngIf="!task.editing"
+            class="custom-control-label"
+            for="task-{{ task.id }}"
+          >{{ task.title }}</label
+          >
+          <input
+            *ngIf="task.editing"
+            [(ngModel)]="task.title"
+            type="text"
+            class="form-control"
+            (blur)="finishEditing(task)"
+          />
+        </div>
+        <div class="mt-2" *ngIf="!task.completed">
+          <form (submit)="addSubtask(task)">
+            <div class="input-group">
+              <input
+                [(ngModel)]="task.newSubtaskTitle"
+                name="subtaskTitle"
+                type="text"
+                class="form-control"
+                placeholder="Add a new subtask"
+              />
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary btn-sm">
+                  Add
+                </button>
+                <button
+                  type="button"
+                  (click)="editTask(task)"
+                  class="btn btn-outline-secondary btn-sm"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  (click)="deleteTask(task)"
+                  class="btn btn-outline-danger btn-sm"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <ng-container *ngIf="task.subtasks">
+          <div class="progress m-2">
+            <div
+              class="progress-bar"
+              [style.width.%]="getSubtaskCompletionPercentage(task.subtasks)"
+              role="progressbar"
+              [ngClass]="{
+                'bg-success':
+                  getSubtaskCompletionPercentage(task.subtasks) === 100
+              }"
+            ></div>
+          </div>
+          <ul class="list-group">
+            <li *ngFor="let subtask of task.subtasks" class="list-group-item">
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="subtask-{{ subtask.id }}"
+                  [(ngModel)]="subtask.completed"
+                  (change)="subtask.completed ? triggerConfetti() : null"
+                />
+                <label
+                  class="custom-control-label"
+                  for="subtask-{{ subtask.id }}"
+                  >{{ subtask.title }}</label
+                >
+              </div>
+            </li>
+          </ul>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
+<canvas
+  id="confetti-canvas"
+  style="position: fixed; top: 0; left: 0; pointer-events: none"
+></canvas>
